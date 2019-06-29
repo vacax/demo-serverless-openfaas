@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="crear-estudiante-openfaas.modelos_openfaas.main" target="1.8" />
+      <module name="crear-estudiante-openfaas.modelos_openfaas.test" target="1.8" />
+      <module name="function.main" target="11" />
+      <module name="function.model.main" target="11" />
+      <module name="function.model.test" target="11" />
+      <module name="function.modelos_openfaas.main" target="1.8" />
+      <module name="function.modelos_openfaas.test" target="1.8" />
+      <module name="function.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
