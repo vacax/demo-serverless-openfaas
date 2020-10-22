@@ -18,7 +18,8 @@ dependencies {
     compile 'com.openfaas:entrypoint:0.1.0'
 
     //Modelo de la aplicacion
-    compile project(':modelos_openfaas')
+    //compile project(':modelos_openfaas')
+    compile files('libs/modelos_openfaas-1.0-SNAPSHOT.jar')
 
     //Librerias propias
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
