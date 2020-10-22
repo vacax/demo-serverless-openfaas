@@ -9,21 +9,21 @@ import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Handler implements com.openfaas.model.IHandler {
+public class Handler extends com.openfaas.model.AbstractHandler {
 
     /**
-     * 
+     *
      * @param req
      * @return
      */
     public IResponse Handle(IRequest req) {
         Response res = new Response();
+
         try {
             res.setContentType("text/html");
             res.setBody(cargarTemplate());
@@ -37,7 +37,7 @@ public class Handler implements com.openfaas.model.IHandler {
     }
 
     /**
-     * 
+     *
      * @return
      * @throws Exception
      */
@@ -52,7 +52,7 @@ public class Handler implements com.openfaas.model.IHandler {
     }
 
     /**
-     * 
+     *
      * @return
      * @throws Exception
      */

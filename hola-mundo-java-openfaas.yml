@@ -1,8 +1,0 @@
-provider:
-  name: faas
-  gateway: http://127.0.0.1:8080
-functions:
-  hola-mundo-java-openfaas:
-    lang: java8
-    handler: ./hola-mundo-java-openfaas
-    image: vacax/hola-mundo-java-openfaas:latest

@@ -8,9 +8,7 @@ import com.openfaas.model.Response;
 import edu.pucmm.modfaas.entidades.Estudiante;
 import edu.pucmm.modfaas.servicios.EstudianteService;
 
-import java.util.List;
-
-public class Handler implements com.openfaas.model.IHandler {
+public class Handler extends com.openfaas.model.AbstractHandler {
 
     public IResponse Handle(IRequest req) {
         Response res = new Response();
@@ -36,8 +34,6 @@ public class Handler implements com.openfaas.model.IHandler {
             res.setBody("Error: "+e.getMessage());
         }
 
-	    return res;
+        return res;
     }
-
-
 }
