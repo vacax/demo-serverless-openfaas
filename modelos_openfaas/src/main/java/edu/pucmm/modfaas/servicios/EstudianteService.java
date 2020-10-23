@@ -5,6 +5,7 @@ import edu.pucmm.modfaas.util.Utilidades;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class EstudianteService {
@@ -20,7 +21,7 @@ public class EstudianteService {
      * 
      */
     private EstudianteService(){
-
+        crearTablas();
     }
 
     /**
@@ -54,6 +55,24 @@ public class EstudianteService {
         return instancia;
     }
 
+    private void crearTablas(){
+        Connection con = getConexion().open();
+        String tabla = "CREATE TABLE IF NOT EXISTS `estudiante` (\n" +
+                "  `matricula` int(11) NOT NULL,\n" +
+                "  `nombre` varchar(200) NOT NULL,\n" +
+                "  `carrera` varchar(200) NOT NULL,\n" +
+                "  PRIMARY KEY (`matricula`)\n" +
+                ") ENGINE=InnoDB DEFAULT CHARSET=latin1";
+        boolean ok = false;
+        try {
+            ok = con.getJdbcConnection().createStatement().execute(tabla);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        if(ok) {
+            System.out.println("Tabla estudiante creada!...");
+        }
+    }
 
     private Sql2o getConexion(){
         Sql2o sql2o = new Sql2o("jdbc:mysql://"+ipBaseDatos+":"+puertoBaseDatos+"/"+nombreBaseDatos+"?useSSL=false", usuarioBaseDatos, passwordBaseDatos);
