@@ -1,8 +1,10 @@
+version: 1.0
 provider:
-  name: faas
-  gateway: http://192.168.77.10:8080
+  name: openfaas
+  gateway: http://127.0.0.1:8080
 functions:
   actualizar-estudiante-openfaas:
-    lang: java8
+    lang: java11
     handler: ./actualizar-estudiante-openfaas
     image: vacax/actualizar-estudiante-openfaas:latest
+

@@ -1,0 +1,7 @@
+environment:
+  database_ip: 172.17.0.1
+  database_port: 3306
+  database_name: openfaas
+  database_user: root
+  database_password: 12345678
+  write_debug: true

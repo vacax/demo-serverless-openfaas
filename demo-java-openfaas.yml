@@ -1,0 +1,36 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  actualizar-estudiante-openfaas:
+    lang: java11
+    handler: ./actualizar-estudiante-openfaas
+    image: vacax/actualizar-estudiante-openfaas:latest
+    environment_file:
+      - conexion.yml
+  crear-estudiante-openfaas:
+    lang: java11
+    handler: ./crear-estudiante-openfaas
+    image: vacax/crear-estudiante-openfaas:latest
+    environment_file:
+      - conexion.yml
+  crud-estudiante-openfaas:
+    lang: java11
+    handler: ./crud-estudiante-openfaas
+    image: vacax/crud-estudiante-openfaas:latest
+    environment_file:
+      - conexion.yml
+  eliminar-estudiante-openfaas:
+    lang: java11
+    handler: ./eliminar-estudiante-openfaas
+    image: vacax/eliminar-estudiante-openfaas:latest
+    environment_file:
+      - conexion.yml
+  listar-estudiante-openfaas:
+    lang: java11
+    handler: ./listar-estudiante-openfaas
+    image: vacax/listar-estudiante-openfaas:latest
+    environment_file:
+      - conexion.yml
+

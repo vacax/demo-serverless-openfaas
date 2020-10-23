@@ -1,6 +1,7 @@
 package edu.pucmm.modfaas.servicios;
 
 import edu.pucmm.modfaas.entidades.Estudiante;
+import edu.pucmm.modfaas.util.Utilidades;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -9,6 +10,11 @@ import java.util.List;
 public class EstudianteService {
 
     private static EstudianteService instancia;
+    private static String ipBaseDatos = "192.168.77.10";
+    private static int puertoBaseDatos = 3306;
+    private static String nombreBaseDatos = "openfaas";
+    private static String usuarioBaseDatos = "root";
+    private static String passwordBaseDatos = "12345678";
 
     /**
      * 
@@ -28,9 +34,29 @@ public class EstudianteService {
         return instancia;
     }
 
+    /**
+     *
+     * @param config
+     * @return
+     */
+    public static EstudianteService getInstancia(Utilidades.ConfiguracionDb config){
+        //
+        EstudianteService.ipBaseDatos = config.getIp();
+        EstudianteService.puertoBaseDatos = config.getPuerto();
+        EstudianteService.nombreBaseDatos = config.getNombre();
+        EstudianteService.usuarioBaseDatos = config.getUsuario();
+        EstudianteService.passwordBaseDatos = config.getPassword();
+
+        //
+        if(instancia==null){
+            instancia = new EstudianteService();
+        }
+        return instancia;
+    }
+
 
     private Sql2o getConexion(){
-        Sql2o sql2o = new Sql2o("jdbc:mysql://192.168.77.10:3306/openfaas?useSSL=false", "root", "12345678");
+        Sql2o sql2o = new Sql2o("jdbc:mysql://"+ipBaseDatos+":"+puertoBaseDatos+"/"+nombreBaseDatos+"?useSSL=false", usuarioBaseDatos, passwordBaseDatos);
         return sql2o;
     }
 

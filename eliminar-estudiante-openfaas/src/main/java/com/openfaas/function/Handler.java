@@ -7,16 +7,18 @@ import com.openfaas.model.IRequest;
 import com.openfaas.model.Response;
 import edu.pucmm.modfaas.entidades.Estudiante;
 import edu.pucmm.modfaas.servicios.EstudianteService;
+import edu.pucmm.modfaas.util.Utilidades;
 
-import java.util.List;
-
-public class Handler implements com.openfaas.model.IHandler {
+public class Handler extends com.openfaas.model.AbstractHandler {
 
     public IResponse Handle(IRequest req) {
         Response res = new Response();
 
         //Eliminando
         try {
+            //leyendo la información desde la variable de ambiente
+            Utilidades.ConfiguracionDb config = Utilidades.getConfiguracionDb();
+            System.out.println("La información de ambiente recuperada: "+config.toString());
 
             //
             System.out.println("Recuperando Path Raw: "+req.getPathRaw());
@@ -28,7 +30,7 @@ public class Handler implements com.openfaas.model.IHandler {
             Gson gson = new Gson();
             Estudiante estudiante = new Gson().fromJson(req.getBody(), Estudiante.class);
             System.out.println("Obteniendo el estudiante: "+estudiante.toString());
-            boolean ok = EstudianteService.getInstancia().removeEstudiante(estudiante.getMatricula());
+            boolean ok = EstudianteService.getInstancia(config).removeEstudiante(estudiante.getMatricula());
             res.setContentType("application/json");
             res.setBody(gson.toJson(ok));
 
@@ -38,8 +40,7 @@ public class Handler implements com.openfaas.model.IHandler {
             e.printStackTrace();
         }
 
-	    return res;
+        return res;
+
     }
-
-
 }
